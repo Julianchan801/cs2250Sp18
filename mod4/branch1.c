@@ -49,6 +49,22 @@ int main()
         temp = 21 - age;
         printf("You have %d years to drink and smoke!\n", temp);
     }
+    
+    if(age == 35)
+    {
+        printf("This is prime time\n");
+    }
+    if(age < 35)
+    {
+        printf("You have %d years until prime time!\n", (35-age));
+    }
+    else
+    {
+
+    {
+        printf("You have %d years until prime time!\n", (35-age));
+    }
+    }
 
     if(age >= 65)
     {
