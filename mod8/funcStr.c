@@ -23,7 +23,7 @@
 int main()
 {
 
-    const int INPUT_STR_SIZE = 50;  // Input string size
+  //  const int INPUT_STR_SIZE = 50;  // Input string size
     char userStr[INPUT_STR_SIZE];   // Input string from user
 
     // Prompt user for input

@@ -19,7 +19,7 @@
 #ifndef __SuperLIB_H__
 #define __SuperLIB_H__
 // Constants
-//const int INPUT_STR_SIZE = 50;  // Input string size
+static const int INPUT_STR_SIZE = 50;  // Input string size
 
 // Function Prototypes
 void StrSpaceToHyphen(char modString[]);
