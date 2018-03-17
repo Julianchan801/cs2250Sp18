@@ -23,8 +23,8 @@
 const int sLength = 900;
 // Function Prototypes
 char PrintMenu(char choice);
-void GetNumOfNonWSCharacters(char string[]);
-void GetNumOfWords(char string[]);
+int GetNumOfNonWSCharacters(const char string[]);
+int GetNumOfWords(const char string[]);
 void FixCapitalization(char string[]);
 void ReplaceExclamation(char string[]);
 void ShortenSpace(char string[]); 
@@ -32,12 +32,14 @@ void ShortenSpace(char string[]);
 // Main Function
 int main()
 {
+    int resultC;
+    int resultW;
     char userText[sLength];
     char choice = 'y';
     //Get and print user input
     printf("Enter a sample text:\n");
     fgets(userText, sLength, stdin);
-    printf("\nYou entered: %s\n", userText);
+    printf("\nYou entered: %s", userText);
     
 
     while(choice != 'q')
@@ -48,11 +50,13 @@ int main()
        {
             case 'c':
                 //Call the function
-                GetNumOfNonWSCharacters(userText);
+                resultC = GetNumOfNonWSCharacters(userText);
+                printf("Number of non-whitespace characters: %d\n", resultC);
                 break;
             case 'w':
                 //Call the function
-                GetNumOfWords(userText);
+                resultW = GetNumOfWords(userText);
+                printf("Number of words: %d\n", resultW);
                 break;            
             case 'f':
                 //Call the function
@@ -90,15 +94,15 @@ int main()
 //Function Menu
 char PrintMenu(char choice)
 {
-    printf("MENU\nc - Number of non-whitespace characters\nw - Number of words\nf - Fix capitalization\nr - Replace all !'s\ns - Shorten spaces\nq - Quit\n\nChoose an option:\n");
+    printf("\nMENU\nc - Number of non-whitespace characters\nw - Number of words\nf - Fix capitalization\nr - Replace all !'s\ns - Shorten spaces\nq - Quit\n\nChoose an option:\n");
     scanf(" %c", &choice);
     return choice;
 }
 
 //Gives the number of non white space characters
-void GetNumOfNonWSCharacters(char string[]){
+int GetNumOfNonWSCharacters(const char string[]){
     int num = 0;
-    for(int i = 0; i < strlen(string)-1; i++)
+    for(int i = 0; i < strlen(string); i++)
     {
         if(string[i] != ' ' && string[i] !='\t')
         {
@@ -107,12 +111,13 @@ void GetNumOfNonWSCharacters(char string[]){
 
     }//end of for loop
     
-    printf("Number of non-whitespace characters: %d\n", num);
-    return;
+    //printf("Number of non-whitespace characters: %d\n\n", num);
+    return num - 1;
 }//end of function
 
 //Prints the number of words entered
-void GetNumOfWords(char string[]){
+    //GetNumOfWords
+int GetNumOfWords(const char string[]){
     int w =0;
     int i =0;
 
@@ -128,8 +133,8 @@ void GetNumOfWords(char string[]){
         }//end of if statement
 
     }//end of for loop
-            printf("Number of words: %d\n", w);
-    return;
+           // printf("Number of words: %d\n", w);
+    return w;
 }//end of function
 
 //Function to eliminate double or more spaces
@@ -137,21 +142,26 @@ void GetNumOfWords(char string[]){
 void ShortenSpace(char string[])
 {
 
-    printf("Edited text: ");
-    for(int i = 0; i < strlen(string); ++i)
+    //char userText[sLength];
+    //char mString[GetNumOfNonWSCharacters( string ) + GetNumOfWords(string) ];
+    char mString[strlen(string)+2];
+    int i = 0;
+    for(int j = 0; j < strlen(string); j++)
     {
-        if( string[i] == ' ' && string[i+1] == ' ')
+        
+        while( string[i] == ' ' && string[i+1] == ' ' )
         {
-            ;//Use 
-
-        }//end of if
-        else{
-            printf("%c", string[i]);
-        }//end of else
-
+            i = i + 1;
+        }//end of while
+            mString[j] = string[i];
+            i = i + 1;
     }//end of for
 
-    printf("\n");
+   // printf("\n");
+    strcpy(string, mString);
+    printf("Edited text: %s\n", string);
+    printf("Edited text: %s\n", mString);
+
     return;
 }//End of function
 
@@ -161,19 +171,21 @@ void ReplaceExclamation(char string[])
 
     printf("Edited text: ");
     
-    for(int i = 0; i <strlen(string); ++i)
+    for(int i = 0; i <strlen(string); i++)
     {
         if(string[i] == '!')
         {
-            printf(".");
+            //printf(".");
+            string[i] = '.';
 
         }//end of if
-        else{
-            printf("%c", string[i]);
-        }//end of else
+       // else{
+            //printf("%c", string[i]);
+        //}//end of else
     }//end of for
 
-    printf("\n");
+    //printf("\n");
+    printf("%s", string);
     return;
 }//end of function
 
@@ -181,25 +193,32 @@ void ReplaceExclamation(char string[])
 //Func: Fixes the capitalization of letters
 void FixCapitalization(char string[])
 {
-    printf("Edited text: ");
-    for(int i = 0; i < strlen(string)-1; i++)
+   // printf("Edited text: ");
+    //char dummy = toupper(string[0]);
+    //printf("%c", dummy );
+    string[0] = toupper(string[0]);
+    for(int i = 1; i < strlen(string)-1; i++)
     {
-        printf("%c", string[i]);
+        //printf("%c", string[i]);
         if(string[i] == '!' || string[i] =='.' || string[i] =='?')
         {
             while(string[i+1] == ' ' || string[i+1] == '\t')
             {
-                printf("%c", string[i+1]);
+                //printf("%c", string[i+1]);
                 i = i + 1;
             }//end of while
-           printf("%c", toupper(string[i+1]) );
-           i= i + 1;
+          //  char dummy = toupper(string[i+1]);
+           //printf("%c", dummy );
+           i = i + 1;
+           string[i] = toupper(string[i]);
+          // i = i + 1;
 
         }//end of if statement
 
     }//end of for loop
-
-  //  printf("\nEdited text: %s\n", string);
+    
+   // printf("%c", string[strlen(string)] );
+    printf("Edited text: %s\n", string);
     return;
 }
 
