@@ -51,7 +51,7 @@ int main()
             case 'c':
                 //Call the function
                 resultC = GetNumOfNonWSCharacters(userText);
-                printf("Number of non-whitespace characters: %d\n", resultC);
+                printf("Number of non-whitespace characters: %d\n", resultC -1);
                 break;
             case 'w':
                 //Call the function
@@ -102,7 +102,7 @@ char PrintMenu(char choice)
 //Gives the number of non white space characters
 int GetNumOfNonWSCharacters(const char string[]){
     int num = 0;
-    for(int i = 0; i < strlen(string); i++)
+    for(int i = 0; i < strlen(string) ; i++)
     {
         if(string[i] != ' ' && string[i] !='\t')
         {
@@ -112,7 +112,7 @@ int GetNumOfNonWSCharacters(const char string[]){
     }//end of for loop
     
     //printf("Number of non-whitespace characters: %d\n\n", num);
-    return num - 1;
+    return num;
 }//end of function
 
 //Prints the number of words entered
@@ -159,8 +159,8 @@ void ShortenSpace(char string[])
 
    // printf("\n");
     strcpy(string, mString);
-    printf("Edited text: %s\n", string);
-    printf("Edited text: %s\n", mString);
+    printf("Edited text: %s", string);
+   // printf("Edited text: %s\n", mString);
 
     return;
 }//End of function
@@ -218,7 +218,7 @@ void FixCapitalization(char string[])
     }//end of for loop
     
    // printf("%c", string[strlen(string)] );
-    printf("Edited text: %s\n", string);
+    printf("Edited text: %s", string);
     return;
 }
 
