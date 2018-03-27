@@ -76,6 +76,7 @@ while(choice != 'q')
                 break;
             case 'i':
                 //Call a function
+                printf("OUTPUT ITEMS' DESCRIPTIONS\n");
                 PrintDescriptions(info);
                 break;
             case 'o':

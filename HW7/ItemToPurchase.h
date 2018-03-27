@@ -19,7 +19,7 @@
 #define  ITEMTOPURCHASE_INC__
  //   <+DETAILED+>
  //Constants
-static const int  cSIZE = 100;
+static const int  sSIZE = 100;
 
 //Structures
 typedef struct ItemToPurchase
@@ -32,7 +32,7 @@ typedef struct ItemToPurchase
 
 //Functions below
 void PrintItemCost(ItemToPurchase item1, ItemToPurchase item2);
-void MakeItemBlank();
+void MakeItemBlank(ItemToPurchase* item);
 
 
 #endif /* ----- #ifndef ITEMTOPURCHASE__INC__ ----- */

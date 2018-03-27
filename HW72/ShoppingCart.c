@@ -53,7 +53,7 @@ ShoppingCart AddItem(ShoppingCart sc, ItemToPurchase item)
  *  Nothing removed.
  * =====================================================================================
  */
-ShoppingCart RemoveItem(char name, ShoppingCart sc )
+ShoppingCart RemoveItem( char name[], ShoppingCart sc )
 {
 
    // int key = -1;

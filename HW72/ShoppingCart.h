@@ -29,7 +29,7 @@ typedef struct ShoppingCart
 
 //Functions
 ShoppingCart AddItem(ShoppingCart sc, ItemToPurchase item);
-ShoppingCart RemoveItem(char name, ShoppingCart sc );
+ShoppingCart RemoveItem(char name[], ShoppingCart sc );
 ShoppingCart ModifyItem(ShoppingCart sc, ItemToPurchase item);
 int GetNumItemsInCart(ShoppingCart sc);
 int GetCostOfCart(ShoppingCart sc);
