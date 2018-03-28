@@ -77,6 +77,19 @@ void PrintItemDescription(ItemToPurchase item)
 }
 
 
-
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  stringModifer
+ *  Description:  Replaces new line with '\0'
+ * =====================================================================================
+ */
+void stringModifer(char a[]) { // This function replaces the '\n' from an fgets with a '\0'
+    for (int i = 0; i < strlen(a); i++) {
+        if (a[i] == '\n') {
+            a[i] = '\0';
+            break;
+        }
+    }
+}
 
 

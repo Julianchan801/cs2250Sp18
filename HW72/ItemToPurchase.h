@@ -30,6 +30,7 @@ typedef struct ItemToPurchase
 void PrintItemCost(ItemToPurchase item1, ItemToPurchase item2);
 void MakeItemBlank(ItemToPurchase* item);
 void PrintItemDescription(ItemToPurchase item);
+void stringModifer(char a[]);
 
 
 #endif /* ----- #ifndef ITEMTOPURCHASE__INC__ ----- */

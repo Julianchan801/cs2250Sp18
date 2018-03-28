@@ -19,24 +19,28 @@
 #include <string.h>
 //#include "ItemToPurchase.h"
 #include "ShoppingCart.h"
-const int sSize = 100;
+//const int sSize = 100;
 // Main Function
 int main()
 {
     ShoppingCart info;
     ItemToPurchase item;
     printf("Enter Customer's Name:\n");
-    fgets(info.customerName,sSize, stdin);
+    fgets(info.customerName,sizeof(info.customerName), stdin);
+    //fflush(stdin);
     printf("Enter Today's Date:\n");
-    fgets(info.currentDate,sSize, stdin);
+    fgets(info.currentDate,sizeof(info.currentDate), stdin);
+    //fflush(stdin);
     printf("Customer Name: %s\n", info.customerName);
     printf("Today's Date: %s\n", info.currentDate);
+    //getchar();
 
-
+//Initialize some variables
 
 char name[100];
 char choice = 'y';
-int number;
+//int number;
+info.cartSize = 0;
 
 while(choice != 'q')
     {
@@ -48,30 +52,42 @@ while(choice != 'q')
         {
             case 'a':
                 //Call a function
+                //ass item to card
+                getchar();
                 printf("ADD ITEM TO CART\nEnter the item name:\n");
-                scanf("%s", item.itemName); 
+                fgets(item.itemName, sizeof(item.itemName), stdin);
+                //scanf("%s", item.itemName); 
                 printf("Enter the item description:\n");
-                scanf("%s", item.itemDescription); 
+                fgets(item.itemDescription,sizeof(item.itemDescription),stdin);
+                //fflush(stdin);
                 printf("Enter the item price:\n");
                 scanf("%d", &item.itemPrice); 
                 printf("Enter the item quantity:\n");
                 scanf("%d", &item.itemQuantity); 
-                AddItem(info, item);
+                //getchar();
+                info = AddItem(info, item);
                 break;
             case 'r':
                 //Call a function
+                //Remove item from cart
                 printf("REMOVE ITEM FROM CART\nEnter name of item to remove:\n");
-                fgets(name,100,stdin);
-                RemoveItem(name, info );
+                fgets(name,sizeof(name),stdin);
+                //fflush(stdin);
+                getchar();
+                info = RemoveItem(name, info );
                 break;
             case 'c':
-                printf("REMOVE ITEM FROM CART\nEnter name of item to remove:\n");
-                fgets(name,100,stdin);
-                printf("Enter the new quantity:\n");
-                scanf("%d", &number);
-                item.itemQuantity = number;
+                //Change quantities
+                getchar();
+                printf("CHANGE ITEM QUANTITY\nEnter the item name:\n");
+                fgets(name,sizeof(name),stdin);
+                //fflush(stdin);
+               // printf("Enter the new quantity:\n");
+                //scanf("%d", &number);
+               // getchar();
+                //item.itemQuantity = number;
                 strcpy(item.itemName,name);
-                ModifyItem(info, item);
+                info = ModifyItem(info, item);
                 //Call a function
                 break;
             case 'i':

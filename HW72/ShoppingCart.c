@@ -35,11 +35,11 @@
 ShoppingCart AddItem(ShoppingCart sc, ItemToPurchase item)
 {
     //Try to get the syntax to add a cart item below
-    sc.cartSize = sc.cartSize + 1;
     sc.cartItems[sc.cartSize].itemPrice =  item.itemPrice; 
     sc.cartItems[sc.cartSize].itemQuantity = item.itemQuantity; 
     strcpy(sc.cartItems[sc.cartSize].itemName, item.itemName); 
     strcpy(sc.cartItems[sc.cartSize].itemDescription, item.itemDescription);
+    sc.cartSize = sc.cartSize + 1;
     return sc;
 }
 
@@ -55,25 +55,25 @@ ShoppingCart AddItem(ShoppingCart sc, ItemToPurchase item)
  */
 ShoppingCart RemoveItem( char name[], ShoppingCart sc )
 {
-
-   // int key = -1;
+    int key = -1;
     //find the item
     for(int i = 0; i < sc.cartSize; i++)
     {
         if( strcmp(sc.cartItems[i].itemName, name) == 0 )
         {
-            ;
-            //MakeItemBlank(sc.cartItems[i]);//does not just set quantity to 0; removed item will not take up a slot in array)
-            //key = i
-        }//end of if
-        else
-        {
-            printf("Item not found in cart. Nothing removed.\n");
-        }//end of else
+            key = i;
+            for(int j = key; j < sc.cartSize - 1; j++)
+            {
+                sc.cartItems[j] = sc.cartItems[j + 1];
+            }//end of for
 
-    }//end of for
-    
-    sc.cartSize = sc.cartSize - 1;
+            sc.cartSize = sc.cartSize - 1;
+            return sc;
+
+        }//end of if
+    }
+
+    printf("Item not found in cart. Nothing removed.\n");
     return sc;
 }//end of function
 
@@ -87,22 +87,25 @@ ShoppingCart RemoveItem( char name[], ShoppingCart sc )
  * =====================================================================================
  */
 ShoppingCart ModifyItem(ShoppingCart sc, ItemToPurchase item){
-
-    for( int i = 0; i < 10; i++){
+    int flag = 100;
+    for( int i = 0; i < sc.cartSize; i++){
         if(strcmp(sc.cartItems[i].itemName, item.itemName) == 0 )
         {
-            printf("Enter a new item description\n");
-            scanf("%s", sc.cartItems[i].itemDescription);
-            printf("Enter the item price:\n");
-            scanf("%d", &sc.cartItems[i].itemPrice);
+            flag = 0;
+            //printf("Enter a new item description\n");
+            //scanf("%s", sc.cartItems[i].itemDescription);
+            //printf("Enter the item price:\n");
+            //scanf("%d", &sc.cartItems[i].itemPrice);
             printf("Enter the item quantity\n");
             scanf("%d", &sc.cartItems[i].itemQuantity);
+            getchar();
         }//end of if
-        else
-        {
-            printf("Item not found in cart.\n");
-        }//end of else
     }//end of for loop
+
+    if(flag == 100)
+    {
+        printf("Item not found in cart.\n");
+    }//end of else
 
     return sc;
 }//end of function
@@ -145,15 +148,19 @@ int GetCostOfCart(ShoppingCart sc)
  */
 void PrintTotal(ShoppingCart sc)
 {
+    stringModifer(sc.customerName);
+    
     if(sc.cartSize == 0)
     {
         printf("SHOPPING CART IS EMPTY\n");
     }//end of if
     else
     {
-        printf("%s - %s\n Number of Items: %d\n\n", sc.customerName, sc.currentDate, sc.cartSize);
+        printf("%s's Shopping Cart  - %s", sc.customerName, sc.currentDate);
+        printf("\nNumber of Items: %d\n\n", GetNumItemsInCart(sc) );
         for(int i = 0; i < sc.cartSize; i++)
         {
+            stringModifer(sc.cartItems[i].itemName);
             printf("%s %d @ $%d = %d\n", sc.cartItems[i].itemName, sc.cartItems[i].itemQuantity, 
             sc.cartItems[i].itemPrice, (sc.cartItems[i].itemQuantity * sc.cartItems[i].itemPrice) );
 
@@ -172,10 +179,12 @@ void PrintTotal(ShoppingCart sc)
  */
 void PrintDescriptions(ShoppingCart sc)
 {
-
-        printf("%s's shopping cart %s\n\nItem Descriptions\n", sc.customerName, sc.currentDate);
+    stringModifer(sc.customerName);
+    stringModifer(sc.currentDate);
+    printf("%s's shopping cart %s\n\nItem Descriptions\n", sc.customerName, sc.currentDate);
         for(int i = 0; i < sc.cartSize; i++)
         {
+            stringModifer(sc.cartItems[i].itemDescription);
             printf("%s\n", sc.cartItems[i].itemDescription);
         }//end of for loop
     return;
