@@ -31,8 +31,10 @@ int main()
     printf("Enter Today's Date:\n");
     fgets(info.currentDate,sizeof(info.currentDate), stdin);
     //fflush(stdin);
+   // getchar();
     printf("Customer Name: %s\n", info.customerName);
-    printf("Today's Date: %s\n", info.currentDate);
+   // getchar();
+    printf("Today's Date: %s", info.currentDate);
     //getchar();
 
 //Initialize some variables
@@ -48,12 +50,14 @@ while(choice != 'q')
         
         scanf(" %c", &choice);
 
+        char c = ' ';
         switch(choice)
         {
             case 'a':
+                while((c = getchar()) != EOF &&  c != '\n');
                 //Call a function
                 //ass item to card
-                getchar();
+               // getchar();
                 printf("ADD ITEM TO CART\nEnter the item name:\n");
                 fgets(item.itemName, sizeof(item.itemName), stdin);
                 //scanf("%s", item.itemName); 
@@ -68,17 +72,19 @@ while(choice != 'q')
                 info = AddItem(info, item);
                 break;
             case 'r':
+                while((c = getchar()) != EOF &&  c != '\n');
                 //Call a function
                 //Remove item from cart
                 printf("REMOVE ITEM FROM CART\nEnter name of item to remove:\n");
                 fgets(name,sizeof(name),stdin);
                 //fflush(stdin);
-                getchar();
+                //getchar();
                 info = RemoveItem(name, info );
                 break;
             case 'c':
+                while((c = getchar()) != EOF &&  c != '\n');
                 //Change quantities
-                getchar();
+                //getchar();
                 printf("CHANGE ITEM QUANTITY\nEnter the item name:\n");
                 fgets(name,sizeof(name),stdin);
                 //fflush(stdin);
@@ -91,15 +97,18 @@ while(choice != 'q')
                 //Call a function
                 break;
             case 'i':
+                while((c = getchar()) != EOF &&  c != '\n');
                 //Call a function
                 printf("OUTPUT ITEMS' DESCRIPTIONS\n");
                 PrintDescriptions(info);
                 break;
             case 'o':
+                while((c = getchar()) != EOF &&  c != '\n');
                 //Call a function
                 PrintTotal( info );
                 break;
             case 'q':
+                while((c = getchar()) != EOF &&  c != '\n');
                 //Call a function
                 break;
             default:

@@ -1,0 +1,17 @@
+// File Information
+// Main file. This file has the skeleton of your menu
+// as well as the basic layout. You still need to add
+// the logic in all the cases to complete the tasks. 
+main.c
+// Library definitions
+Playlist.c
+// Library Prototypes
+Playlist.h
+
+
+Extra:
+// This is a compile version of the full file. 
+// You may use it to test how your code should
+// behave. 
+mainFinal.out*  
+

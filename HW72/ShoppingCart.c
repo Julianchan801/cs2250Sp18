@@ -55,25 +55,31 @@ ShoppingCart AddItem(ShoppingCart sc, ItemToPurchase item)
  */
 ShoppingCart RemoveItem( char name[], ShoppingCart sc )
 {
-    int key = -1;
+    int found = 0;
     //find the item
     for(int i = 0; i < sc.cartSize; i++)
     {
-        if( strcmp(sc.cartItems[i].itemName, name) == 0 )
-        {
-            key = i;
-            for(int j = key; j < sc.cartSize - 1; j++)
-            {
-                sc.cartItems[j] = sc.cartItems[j + 1];
-            }//end of for
-
-            sc.cartSize = sc.cartSize - 1;
-            return sc;
-
-        }//end of if
+        if (strcmp(sc.cartItems[i].itemName, name) == 0) {
+            for (int n = i; n < sc.cartSize - 1; n++) {
+            
+                sc.cartItems[n] = sc.cartItems[n+1];
+                /*strcpy(sc.cartItems[n].itemDescription, sc.cartItems[n + 1].itemDescription);
+                strcpy(sc.cartItems[n].itemName, sc.cartItems[n + 1].itemName);
+                sc.cartItems[n].itemPrice = sc.cartItems[n + 1].itemPrice;
+                sc.cartItems[n].itemQuantity = sc.cartItems[n + 1].itemQuantity;*/
+            }
+            found = 1;
+            //sc.cartSize--;
+            //return sc;
+        }
     }
 
-    printf("Item not found in cart. Nothing removed.\n");
+    if(!found)
+        printf("Item not found in cart. Nothing removed.\n");
+    else{
+        sc.cartSize--;
+    }
+     
     return sc;
 }//end of function
 
@@ -184,8 +190,9 @@ void PrintDescriptions(ShoppingCart sc)
     printf("%s's shopping cart %s\n\nItem Descriptions\n", sc.customerName, sc.currentDate);
         for(int i = 0; i < sc.cartSize; i++)
         {
+            stringModifer(sc.cartItems[i].itemName);
             stringModifer(sc.cartItems[i].itemDescription);
-            printf("%s\n", sc.cartItems[i].itemDescription);
+            printf("%s: %s\n",sc.cartItems[i].itemName, sc.cartItems[i].itemDescription);
         }//end of for loop
     return;
 }//end of function

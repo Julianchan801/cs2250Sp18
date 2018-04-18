@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/julianchan/Desktop/cs2250/HW8/Playlist.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+Playlist.h
+/Users/julianchan/Desktop/cs2250/HW8/Playlist.h
+
+/Users/julianchan/Desktop/cs2250/HW8/Playlist.h
+
+/Users/julianchan/Desktop/cs2250/HW8/main.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+Playlist.h
+/Users/julianchan/Desktop/cs2250/HW8/Playlist.h
+
